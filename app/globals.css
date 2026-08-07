@@ -517,6 +517,13 @@ body.dark .field input, body.dark .field select, body.dark .field textarea { bac
 .field .hint { font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
+.rte-toolbar { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.rte-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px; padding: 0 8px; border: 1px solid var(--gray-300); border-radius: 6px; background: #fff; font-weight: 700; font-size: 0.85rem; color: var(--dark); cursor: pointer; }
+body.dark .rte-btn { background: #1F2937; color: #E5E7EB; border-color: #374151; }
+.rte-btn:hover { border-color: var(--red); color: var(--red); }
+.rte textarea { min-height: 320px; line-height: 1.7; border: 1px solid var(--gray-300); border-radius: 8px; padding: 12px 14px; font-family: inherit; font-size: 0.95rem; width: 100%; outline: none; }
+.rte textarea:focus { border-color: var(--red); }
+
 .form-card { background: #fff; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px; }
 body.dark .form-card { background: #111827; border-color: #1F2937; }
 .form-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-100); }

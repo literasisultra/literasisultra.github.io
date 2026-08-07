@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { getSupabase } from '../../../../lib/supabase/client'
 import { slugify } from '../../../../lib/format'
+import RichTextEditor from '../../../../components/RichTextEditor'
 
 export default function EditArticleClient({ id }) {
   const router = useRouter()
@@ -148,7 +149,7 @@ export default function EditArticleClient({ id }) {
           </div>
           <div className="field">
             <label>Isi Artikel</label>
-            <textarea value={form.content} onChange={(e) => set('content', e.target.value)} required />
+            <RichTextEditor value={form.content} onChange={(v) => set('content', v)} />
           </div>
         </div>
 

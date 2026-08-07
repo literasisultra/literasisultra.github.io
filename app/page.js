@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getPublishedArticles, getPopularArticles, getCategories } from '../lib/data'
 import { formatDate, formatViews, readingTime } from '../lib/format'
 import ArticleCard from '../components/ArticleCard'
+import SidebarWidgets from '../components/SidebarWidgets'
 
 export const metadata = {
   title: 'Beranda',
@@ -81,6 +82,7 @@ export default async function HomePage() {
           </div>
 
           <aside>
+            <SidebarWidgets />
             <div className="sidebar-card">
               <h3 className="sidebar-title">Populer</h3>
               {popular.length === 0 && <p style={{ fontSize: '0.85rem', color: 'var(--gray-400)' }}>Belum ada data.</p>}

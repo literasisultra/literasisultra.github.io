@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { getSupabase } from '../../../../lib/supabase/client'
 import { slugify } from '../../../../lib/format'
+import RichTextEditor from '../../../../components/RichTextEditor'
 
 export default function AdminArtikelBaru() {
   const [categories, setCategories] = useState([])
@@ -129,13 +130,7 @@ export default function AdminArtikelBaru() {
           </div>
           <div className="field">
             <label>Isi Artikel (Markdown / HTML)</label>
-            <textarea
-              value={form.content}
-              onChange={(e) => set('content', e.target.value)}
-              placeholder={'# Sub Judul\n\nParagraf pertama...\n\n## Sub Judul 2\n\nTulis konten artikel di sini. Mendukung HTML dan Markdown.'}
-              required
-            />
-            <div className="hint">Mendukung HTML & Markdown. Gambar pakai &lt;img src="URL"&gt;.</div>
+            <RichTextEditor value={form.content} onChange={(v) => set('content', v)} />
           </div>
         </div>
 

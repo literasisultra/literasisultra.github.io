@@ -6,6 +6,7 @@ import { getSupabase } from '../../../lib/supabase/client'
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null)
   const [topArticles, setTopArticles] = useState([])
+  const [daily, setDaily] = useState([])
 
   useEffect(() => {
     const supabase = getSupabase()
@@ -37,6 +38,9 @@ export default function AdminDashboard() {
         pendingComments: pendingComments || 0
       })
       setTopArticles(top || [])
+
+      const days = await buildDailySeries(supabase)
+      setDaily(days)
     }
     load()
   }, [])
@@ -51,6 +55,7 @@ export default function AdminDashboard() {
   }
 
   const maxViews = Math.max(...topArticles.map((a) => a.views_count || 0), 1)
+  const maxDaily = Math.max(...daily.map((d) => d.articles), 1)
 
   return (
     <>
@@ -84,6 +89,31 @@ export default function AdminDashboard() {
       </div>
 
       <div className="form-card">
+        <h3>Publikasi 7 Hari Terakhir</h3>
+        {daily.length === 0 && <div className="empty">Belum ada data.</div>}
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${daily.length || 1}, 1fr)`, gap: 10, alignItems: 'end', minHeight: 180 }}>
+          {daily.map((d) => (
+            <div key={d.date} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 800, color: d.articles > 0 ? 'var(--red)' : 'var(--gray-400)' }}>
+                {d.articles}
+              </div>
+              <div
+                style={{
+                  height: `${Math.max((d.articles / maxDaily) * 110, 4)}px`,
+                  background: d.articles > 0 ? 'linear-gradient(180deg, var(--red), #7F1D1D)' : 'var(--gray-100)',
+                  borderRadius: '6px 6px 0 0',
+                  minHeight: 4
+                }}
+              />
+              <div style={{ fontSize: '0.7rem', color: 'var(--gray-500)', marginTop: 6 }}>
+                {d.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="form-card">
         <h3>Artikel Terpopuler</h3>
         {topArticles.length === 0 && <div className="empty">Belum ada artikel.</div>}
         {topArticles.map((a) => (
@@ -106,4 +136,33 @@ export default function AdminDashboard() {
       </div>
     </>
   )
+}
+
+async function buildDailySeries(supabase) {
+  const labels = []
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date()
+    d.setDate(d.getDate() - i)
+    labels.push(d)
+  }
+  const start = new Date(labels[0])
+  start.setHours(0, 0, 0, 0)
+  const end = new Date()
+  end.setHours(23, 59, 59, 999)
+
+  const { data } = await supabase
+    .from('articles')
+    .select('published_at')
+    .gte('published_at', start.toISOString())
+    .lte('published_at', end.toISOString())
+
+  return labels.map((d) => {
+    const key = d.toISOString().slice(0, 10)
+    const count = (data || []).filter((a) => a.published_at && a.published_at.slice(0, 10) === key).length
+    return {
+      date: key,
+      label: d.toLocaleDateString('id-ID', { weekday: 'short' }).replace('.', ''),
+      articles: count
+    }
+  })
 }
