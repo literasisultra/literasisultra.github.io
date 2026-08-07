@@ -16,8 +16,11 @@
 - Login berbasis peran (Super Admin, Editor, Writer)
 - Statistik & analitik (total artikel, komentar, artikel terpopuler)
 - Editor artikel dengan SEO fields (meta title, description, slug, OpenGraph)
+- Penjadwalan publikasi artikel (Publish Later)
+- Moderasi komentar (setujui / batalkan / hapus)
 - Manajemen kategori & tag
-- Manajemen media (upload gambar ke Supabase Storage)
+- Manajemen media (upload ke Cloudflare R2 + fallback Supabase Storage)
+- Sitemap.xml & RSS feed otomatis saat build
 
 ## Teknologi
 
@@ -60,7 +63,7 @@ npm run upload -- foto-1.jpg --key gambar-utama.png   # nama custom
 npm run upload -- folder/*.jpg                          # batch
 ```
 
-Script akan mencetak URL publik (mis. `https://pub-xxxx.r2.dev/1728xxx-foto.jpg`) yang bisa langsung dipakai di field "URL Gambar Utama" pada editor artikel, atau dicatat di **Admin → Media**.
+Script akan mencetak URL publik (mis. `https://pub-9f475eee83f149bbadc6a88d988fcf83.r2.dev/1728xxx-foto.jpg`) yang bisa langsung dipakai di field "URL Gambar Utama" pada editor artikel, atau dicatat di **Admin → Media**.
 
 > Prasyarat: kredensial R2 di `.env.local` (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_PUBLIC_URL`). Bucket `literasisultra-images` harus mengaktifkan **Public access** di dashboard Cloudflare agar gambar bisa tampil publik.
 

@@ -35,11 +35,9 @@ const {
 } = process.env
 
 const args = process.argv.slice(2)
-const input = args.filter((a) => !a.startsWith('--'))
-const keyOverride = (() => {
-  const i = args.indexOf('--key')
-  return i >= 0 ? args[i + 1] : null
-})()
+const keyIndex = args.indexOf('--key')
+const keyOverride = keyIndex >= 0 ? args[keyIndex + 1] : null
+const input = args.filter((a, i) => a !== '--key' && i !== keyIndex + 1)
 
 if (input.length === 0) {
   console.error('Usage: npm run upload -- <file|glob> [--key nama.png]')
