@@ -19,6 +19,7 @@ export default function AdminArtikelBaru() {
     category_id: '',
     featured_image_url: '',
     is_published: true,
+    scheduled_at: '',
     meta_title: '',
     meta_description: '',
     og_image_url: ''
@@ -63,7 +64,11 @@ export default function AdminArtikelBaru() {
       author_id: user?.id || null,
       meta_title: form.meta_title || form.title.slice(0, 60),
       meta_description: form.meta_description || form.excerpt,
-      published_at: form.is_published ? new Date().toISOString() : null
+      published_at: form.is_published
+        ? form.scheduled_at
+          ? new Date(form.scheduled_at).toISOString()
+          : new Date().toISOString()
+        : null
     }
 
     const { error } = await supabase.from('articles').insert(payload)
@@ -178,6 +183,18 @@ export default function AdminArtikelBaru() {
               style={{ width: 18, height: 18 }}
             />
             <label style={{ marginBottom: 0 }}>Publikasikan langsung</label>
+          </div>
+          <div className="field">
+            <label>Jadwalkan Publikasi (Publish Later)</label>
+            <input
+              type="datetime-local"
+              value={form.scheduled_at}
+              onChange={(e) => set('scheduled_at', e.target.value)}
+              disabled={!form.is_published}
+            />
+            <div className="hint">
+              Kosongkan untuk publikasi segera. Isi untuk menayangkan otomatis pada waktu tersebut.
+            </div>
           </div>
           <button className="btn-red" type="submit" disabled={saving}>
             {saving ? 'Menyimpan...' : 'Simpan Artikel'}

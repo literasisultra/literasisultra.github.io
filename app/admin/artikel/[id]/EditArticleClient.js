@@ -21,6 +21,7 @@ export default function EditArticleClient({ id }) {
     category_id: '',
     featured_image_url: '',
     is_published: true,
+    scheduled_at: '',
     meta_title: '',
     meta_description: '',
     og_image_url: ''
@@ -46,6 +47,7 @@ export default function EditArticleClient({ id }) {
             category_id: data.category_id || '',
             featured_image_url: data.featured_image_url || '',
             is_published: data.is_published,
+            scheduled_at: data.published_at ? toLocalInput(data.published_at) : '',
             meta_title: data.meta_title || '',
             meta_description: data.meta_description || '',
             og_image_url: data.og_image_url || ''
@@ -57,6 +59,13 @@ export default function EditArticleClient({ id }) {
 
   function set(field, value) {
     setForm((f) => ({ ...f, [field]: value }))
+  }
+
+  function toLocalInput(iso) {
+    const d = new Date(iso)
+    if (isNaN(d)) return ''
+    const pad = (n) => String(n).padStart(2, '0')
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
   }
 
   async function save(e) {
@@ -75,6 +84,11 @@ export default function EditArticleClient({ id }) {
       is_published: form.is_published,
       meta_title: form.meta_title || form.title.slice(0, 60),
       meta_description: form.meta_description || form.excerpt,
+      published_at: form.is_published
+        ? form.scheduled_at
+          ? new Date(form.scheduled_at).toISOString()
+          : new Date().toISOString()
+        : null,
       updated_at: new Date().toISOString()
     }
     const { error } = await supabase.from('articles').update(payload).eq('id', id)
@@ -170,6 +184,18 @@ export default function EditArticleClient({ id }) {
           <div className="field" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <input type="checkbox" checked={form.is_published} onChange={(e) => set('is_published', e.target.checked)} style={{ width: 18, height: 18 }} />
             <label style={{ marginBottom: 0 }}>Published</label>
+          </div>
+          <div className="field">
+            <label>Jadwalkan Publikasi (Publish Later)</label>
+            <input
+              type="datetime-local"
+              value={form.scheduled_at}
+              onChange={(e) => set('scheduled_at', e.target.value)}
+              disabled={!form.is_published}
+            />
+            <div className="hint">
+              Kosongkan untuk publikasi segera. Isi untuk menayangkan otomatis pada waktu tersebut.
+            </div>
           </div>
           <button className="btn-red" type="submit" disabled={saving}>
             {saving ? 'Menyimpan...' : 'Simpan Perubahan'}

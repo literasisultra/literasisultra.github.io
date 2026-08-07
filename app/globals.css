@@ -497,6 +497,7 @@ body.dark .table tr:hover td { background: #1F2937; }
 .tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; }
 .tag-published { background: #D1FAE5; color: #065F46; }
 .tag-draft { background: #FEF3C7; color: #92400E; }
+.tag-scheduled { background: #DBEAFE; color: #1E40AF; }
 .tag-badge { background: #F3E8FF; color: #6B21A8; }
 
 .field { margin-bottom: 18px; }

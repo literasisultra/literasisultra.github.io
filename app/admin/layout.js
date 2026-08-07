@@ -60,7 +60,8 @@ export default function AdminLayout({ children }) {
     { href: '/admin/dashboard/', label: 'Dashboard', icon: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z' },
     { href: '/admin/artikel/', label: 'Artikel', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM14 2v6h6M8 13h8M8 17h5' },
     { href: '/admin/kategori/', label: 'Kategori', icon: 'M4 6h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm10 0h6m-6 4h6M4 16h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm10 0h6m-6 4h6' },
-    { href: '/admin/media/', label: 'Media', icon: 'M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm3 4h.01M4 15l4-4 3 3 4-4 5 5' }
+    { href: '/admin/media/', label: 'Media', icon: 'M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm3 4h.01M4 15l4-4 3 3 4-4 5 5' },
+    { href: '/admin/komentar/', label: 'Komentar', icon: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z' }
   ]
 
   return (

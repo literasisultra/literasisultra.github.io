@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Literasisultra</title>
+    <link>https://literasisultra.github.io/</link>
+    <description>Portal berita dan literasi digital Sulawesi Tenggara.</description>
+    <language>id-id</language>
+    <lastBuildDate>Fri, 07 Aug 2026 15:01:04 GMT</lastBuildDate>
+    <atom:link href="https://literasisultra.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ekonomi Digital Sultra Tumbuh, UMKM Beralih ke Platform Online</title>
+      <link>https://literasisultra.github.io/artikel/ekonomi-digital-sultra-tumbuh-umkm-beralih-ke-platform-online/</link>
+      <guid isPermaLink="true">https://literasisultra.github.io/artikel/ekonomi-digital-sultra-tumbuh-umkm-beralih-ke-platform-online/</guid>
+      <pubDate>Fri, 07 Aug 2026 11:00:46 GMT</pubDate>
+      <category>Ekonomi</category>
+      <description>Pertumbuhan ekonomi digital di Sultra mendorong pelaku UMKM mengadopsi platform penjualan online.</description>
+    </item>
+    <item>
+      <title>Inovasi Pembelajaran Digital Meningkatkan Minat Baca Siswa</title>
+      <link>https://literasisultra.github.io/artikel/inovasi-pembelajaran-digital-meningkatkan-minat-baca-siswa/</link>
+      <guid isPermaLink="true">https://literasisultra.github.io/artikel/inovasi-pembelajaran-digital-meningkatkan-minat-baca-siswa/</guid>
+      <pubDate>Fri, 07 Aug 2026 11:00:46 GMT</pubDate>
+      <category>Edukasi</category>
+      <description>Sekolah di Kendari menerapkan pembelajaran digital untuk meningkatkan minat baca siswa hingga 40 persen.</description>
+    </item>
+    <item>
+      <title>Pemerintah Sultra Resmikan Program Literasi Digital untuk Pelajar</title>
+      <link>https://literasisultra.github.io/artikel/pemerintah-sultra-resmikan-program-literasi-digital-untuk-pelajar/</link>
+      <guid isPermaLink="true">https://literasisultra.github.io/artikel/pemerintah-sultra-resmikan-program-literasi-digital-untuk-pelajar/</guid>
+      <pubDate>Fri, 07 Aug 2026 11:00:46 GMT</pubDate>
+      <category>Sultra</category>
+      <description>Pemerintah Provinsi Sulawesi Tenggara meluncurkan program literasi digital bagi pelajar di 17 kabupaten/kota.</description>
+    </item>
+  </channel>
+</rss>

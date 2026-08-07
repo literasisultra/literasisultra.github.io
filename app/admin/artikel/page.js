@@ -22,6 +22,12 @@ export default function AdminArticles() {
       })
   }, [])
 
+  function status(a) {
+    if (!a.is_published) return 'Draft'
+    if (a.published_at && new Date(a.published_at) > new Date()) return 'Terjadwal'
+    return 'Published'
+  }
+
   async function remove(id) {
     if (!confirm('Yakin ingin menghapus artikel ini?')) return
     const supabase = getSupabase()
@@ -70,8 +76,10 @@ export default function AdminArticles() {
                 <td style={{ fontWeight: 700 }}>{a.title}</td>
                 <td>{a.categories?.name || '-'}</td>
                 <td>
-                  <span className={`tag ${a.is_published ? 'tag-published' : 'tag-draft'}`}>
-                    {a.is_published ? 'Published' : 'Draft'}
+                  <span className={`tag ${
+                    status(a) === 'Published' ? 'tag-published' : status(a) === 'Terjadwal' ? 'tag-scheduled' : 'tag-draft'
+                  }`}>
+                    {status(a)}
                   </span>
                 </td>
                 <td>{formatDateTime(a.published_at || a.created_at)}</td>

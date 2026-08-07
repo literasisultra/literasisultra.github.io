@@ -20,6 +20,8 @@ export default function Footer() {
               <li><a href="/kategori/politik/">Politik</a></li>
               <li><a href="/kategori/sultra/">Sultra</a></li>
               <li><a href="/kategori/edukasi/">Edukasi</a></li>
+              <li><a href="/rss.xml">RSS Feed</a></li>
+              <li><a href="/sitemap.xml">Sitemap</a></li>
             </ul>
           </div>
           <div>

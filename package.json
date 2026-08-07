@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "node scripts/generate-feed.mjs",
     "start": "next start",
     "lint": "next lint",
     "upload": "node scripts/upload-r2.mjs"
