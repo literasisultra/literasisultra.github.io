@@ -1,0 +1,18 @@
+name: Verify R2 Public URL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test public file
+        run: |
+          echo "=== GET public-access-test.txt ==="
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" https://pub-9f475eee83f149bbadc6a88d988fcf83.r2.dev/public-access-test.txt || echo "CURL FAILED"
+          echo "=== content ==="
+          curl -s https://pub-9f475eee83f149bbadc6a88d988fcf83.r2.dev/public-access-test.txt || echo "CURL FAILED"
+          echo ""
+          echo "=== nonexistent ==="
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" https://pub-9f475eee83f149bbadc6a88d988fcf83.r2.dev/no-such-file.png || echo "CURL FAILED"
