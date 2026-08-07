@@ -25,9 +25,9 @@
 |---|---|
 | Frontend | Next.js 15 (Static Export) |
 | Database & Auth | Supabase (PostgreSQL + RLS) |
-| Storage Media | Supabase Storage |
+| Storage Media | Cloudflare R2 (5GB gratis) |
 | Hosting & CI/CD | GitHub Pages + GitHub Actions |
-| CDN | GitHub Pages / Cloudflare |
+| CDN | Cloudflare / GitHub Pages |
 
 ## Struktur
 
@@ -49,6 +49,20 @@ npm install
 # isi .env.local (lihat .env.example)
 npm run dev
 ```
+
+## Upload Media ke Cloudflare R2
+
+Karena GitHub Pages adalah situs statis (tanpa server), upload gambar dilakukan lewat script lokal yang menggunakan S3 API R2:
+
+```bash
+npm run upload -- foto-berita.jpg
+npm run upload -- foto-1.jpg --key gambar-utama.png   # nama custom
+npm run upload -- folder/*.jpg                          # batch
+```
+
+Script akan mencetak URL publik (mis. `https://pub-xxxx.r2.dev/1728xxx-foto.jpg`) yang bisa langsung dipakai di field "URL Gambar Utama" pada editor artikel, atau dicatat di **Admin → Media**.
+
+> Prasyarat: kredensial R2 di `.env.local` (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`, `R2_PUBLIC_URL`). Bucket `literasisultra-images` harus mengaktifkan **Public access** di dashboard Cloudflare agar gambar bisa tampil publik.
 
 ## Deployment
 
